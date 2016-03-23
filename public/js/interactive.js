@@ -1,5 +1,6 @@
 $(function () {
   var days = [{hotel: [], restaurants: [], activities: []}];
+  
   $('#selectors').on('click','button',function () {
     var text = $(this).parent().children('select').children('option:selected').text();
     var category = $(this).parent().attr('class');
@@ -23,4 +24,9 @@ $(function () {
     $(this).addClass('current-day');
     $('#day-title').children('span').text('Day '+$(this).text());
   });
+
+  $('#day-title .remove').on('click', function() {
+    $('#addDay').prev().remove();
+  });
+
 });
