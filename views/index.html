@@ -13,7 +13,7 @@
     <div class="col-xs-6 col-sm-12">
       <div class="panel panel-default">
         <div id="selectors" class="panel-body">
-          <div class="hotel">
+          <div class="hotels">
             <h4>Hotels</h4>
             <select>
               {% for hotel in all_hotels %}
@@ -22,7 +22,7 @@
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div class="restaurant">
+          <div class="restaurants">
             <h4>Restaurants</h4>
             <select>
               {% for restaurant in all_restaurants %}
@@ -31,7 +31,7 @@
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div class="activity">
+          <div class="activities">
             <h4>Activities</h4>
             <select>
               {% for activity in all_activities %}
@@ -58,17 +58,17 @@
           </div>
         </div>
         <div class="panel-body itinerary">
-          <div class="hotel">
+          <div class="hotels">
             <h4>My Hotel</h4>
             <ul class="list-group">
             </ul>
           </div>
-          <div class="restaurant">
+          <div class="restaurants">
             <h4>My Restaurants</h4>
             <ul class="list-group">
             </ul>
           </div>
-          <div class="activity">
+          <div class="activities">
             <h4>My Activities</h4>
             <ul class="list-group">
             </ul>
@@ -79,11 +79,16 @@
   </div>
 </div>
 <script>
-  {% autoescape false %}
+
+{% autoescape false %}
+
   // note to instructors: next iteration, change `all_xyz` to `templateXyz`
-  var hotels = {{ all_hotels | json }};
-  var restaurants = {{ all_restaurants | json }};
-  var activities = {{ all_activities | json }};
-  {% endautoescape %}
+  var refObj = {
+    hotels: {{ all_hotels | json }},
+    restaurants: {{ all_restaurants | json }},
+    activities: {{ all_activities | json }}
+  }
+
+{% endautoescape %}
 </script>
 {% endblock %}
