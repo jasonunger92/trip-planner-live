@@ -4,6 +4,9 @@ body {
   font-family: 'Varela Round', sans-serif;
   min-width: -webkit-min-content; }
 
+button {
+  outline: none; }
+
 #app {
   border-left: 2px solid #b1a398;
   border-right: 2px solid #b1a398; }

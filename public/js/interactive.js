@@ -21,12 +21,47 @@ $(function() {
             return;
         }
         $('.itinerary').find('.' + category).children('ul').append('<div class="itinerary-item"><span class="title">' + text + '</span><button class="btn btn-xs btn-danger remove btn-circle">x</button></div>');
-        addToDay(index, category, text);
+        var obj = addToDay(index, category, text);
+
+        var contentString;
+        if (category === 'hotels') {
+          var num_stars = obj.num_stars;
+          var starz = "";
+          for(var i = 0; i < Math.floor(num_stars); i++) {
+            starz += '<img src=/images/starz.png>';
+          }
+          if (num_stars%1) {
+            starz += '<img src=/images/half-star.png>';
+          }
+
+          contentString = '<ul class="list-unstyled"><li><h4>'+obj.name+'</h4></li><li><p>'+obj.place.address+', '+obj.place.city+', '+obj.place.state+'</p></li><li><p>'+obj.place.phone+'</p></li><li><p>Number of Stars: '+starz+'</p></li><li><p>Amenities: '+obj.amenities+'</p></li></ul>';
+        }
+
+        if (category === 'restaurants') {
+          var price = obj.price;
+          var dollaz = "";
+          for (var i = 0; i < price; i++) {
+            dollaz += '$';
+          }
+          contentString = '<ul class="list-unstyled"><li><h4>'+obj.name+'</h4></li><li><p>'+obj.place.address+', '+obj.place.city+', '+obj.place.state+'</p></li><li><p>'+obj.place.phone+'</p></li><li><p>Price: '+dollaz+'</p></li><li><p>Cuisine: '+obj.cuisines+'</p></li></ul>';
+        }
+
+        if (category === 'activities') {
+          contentString = '<ul class="list-unstyled"><li><h4>'+obj.name+'</h4></li><li><p>'+obj.place.address+', '+obj.place.city+', '+obj.place.state+'</p></li><li><p>'+obj.place.phone+'</p></li><li><p>Age Range: '+obj.age_range+'</p></li></ul>';
+        }
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
         var location = days[index][category][days[index][category].length-1].place.location;
         var marker = drawLocation(location,{
           icon: icons[category]
         });
         marker.name = text;
+        marker.addListener('click', function() {
+          infowindow.open(map,marker);
+        });
         days[index].markers.push(marker);
         updateMap(days[index].markers);
     });
@@ -94,7 +129,7 @@ $(function() {
             return elem.name === text;
         })[0];
         days[index][category].push(obj);
-        console.log(days[index], index);
+        return obj;
     }
 
     function removeFromDay(index, category, text) {

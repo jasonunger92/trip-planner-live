@@ -11,6 +11,10 @@ body {
   min-width: -webkit-min-content;
 }
 
+button {
+  outline: none;
+}
+
 #app {
   border-left: 2px solid lighten($medium-brown, 25%);
   border-right: 2px solid lighten($medium-brown, 25%);
