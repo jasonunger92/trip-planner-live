@@ -7,6 +7,7 @@ function initialize_gmaps() {
   var mapOptions = {
     center: myLatlng,
     zoom: 13,
+    scrollwheel: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP
     // styles: styleArr
   };

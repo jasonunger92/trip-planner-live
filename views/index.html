@@ -12,30 +12,30 @@
   <div id="control-panel" class="col-sm-4 col-lg-3 clearfix">
     <div class="col-xs-6 col-sm-12">
       <div class="panel panel-default">
-        <div class="panel-body">
-          <div>
+        <div id="selectors" class="panel-body">
+          <div class="hotel">
             <h4>Hotels</h4>
             <select>
               {% for hotel in all_hotels %}
-              <option>{{ hotel.name }}</option>
+              <option value="{{ hotel.name }}">{{ hotel.name }}</option>
               {% endfor %}
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div>
+          <div class="restaurant">
             <h4>Restaurants</h4>
             <select>
               {% for restaurant in all_restaurants %}
-              <option>{{ restaurant.name }}</option>
+              <option value="{{ restaurant.name }}">{{ restaurant.name }}</option>
               {% endfor %}
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div>
+          <div class="activity">
             <h4>Activities</h4>
             <select>
               {% for activity in all_activities %}
-              <option>{{ activity.name }}</option>
+              <option value="{{ activity.name }}">{{ activity.name }}</option>
               {% endfor %}
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
@@ -53,22 +53,26 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="day-buttons">
-            <button class="btn btn-circle day-btn current-day">1</button>
-            <button class="btn btn-circle day-btn">+</button>
+            <button class="btn btn-circle day-btn day current-day">1</button>
+            <button id ="addDay" class="btn btn-circle day-btn">+</button>
           </div>
         </div>
-        <div class="panel-body">
-          <div>
+        <div id="day1" class="panel-body itinerary">
+          <div class="hotel">
             <h4>My Hotel</h4>
             <ul class="list-group">
+              <!-- <div class="itinerary-item">
+                <span class="title">Bouley</span>
+                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
+              </div> -->
             </ul>
           </div>
-          <div>
+          <div class="restaurant">
             <h4>My Restaurants</h4>
             <ul class="list-group">
             </ul>
           </div>
-          <div>
+          <div class="activity">
             <h4>My Activities</h4>
             <ul class="list-group">
             </ul>
